@@ -1,6 +1,6 @@
 {
   "name": "html-yapici",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "main": "dist/index.js",
   "license": "MIT",
   "scripts": {
@@ -10,10 +10,15 @@
     "watch": "tsc --watch",
     "clean": "rm -rf dist"
   },
-  "dependencies": {},
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.10.2",
+    "dotenv": "^16.5.0",
+    "jsdom": "^23.2.0"
+  },
   "devDependencies": {
-    "@types/node": "^18.0.0",
-    "ts-node": "^10.8.0",
-    "typescript": "^4.7.0"
+    "@types/jsdom": "^21.1.7",
+    "@types/node": "^22.15.2",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3"
   }
 }
