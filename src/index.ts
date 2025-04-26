@@ -5,6 +5,8 @@ import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js"
 import {
   CallToolRequestSchema,
   ListToolsRequestSchema,
+  ListPromptsRequestSchema,
+  ListResourcesRequestSchema,
   Tool,
 } from "@modelcontextprotocol/sdk/types.js";
 import * as fs from 'fs/promises';
@@ -12,7 +14,7 @@ import * as path from 'path';
 import { JSDOM } from 'jsdom';
 
 // Logları dosyaya yazan yardımcı fonksiyon
-const logFile = fs.open('/tmp/html-editor-mcp.log', 'a').then(file => file);
+const logFile = fs.open('/Users/byram/Projects/claude/mcp/html-yapici/html-editor-mcp.log', 'a').then(file => file);
 
 async function logToFile(message: string) {
   const file = await logFile;
@@ -207,6 +209,8 @@ const server = new Server(
     {
       capabilities: {
         tools: {},
+        //prompts: {},  // Prompts yeteneğini ekleyin
+        //resources: {}
       },
     },
 );
@@ -682,15 +686,13 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
 });
 
 // Şablon ve kaynak listesi istekleri için boş yanıtlar
-// @ts-ignore
-server.setRequestHandler({ method: "prompts/list" }, async () => ({
+/*server.setRequestHandler(ListPromptsRequestSchema, async () => ({
   prompts: []
 }));
 
-// @ts-ignore
-server.setRequestHandler({ method: "resources/list" }, async () => ({
+server.setRequestHandler(ListResourcesRequestSchema, async () => ({
   resources: []
-}));
+}));*/
 
 // Sunucuyu çalıştır
 async function runServer() {
